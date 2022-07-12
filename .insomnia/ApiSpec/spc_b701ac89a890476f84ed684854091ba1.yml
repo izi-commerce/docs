@@ -1,0 +1,65 @@
+_id: spc_b701ac89a890476f84ed684854091ba1
+type: ApiSpec
+parentId: wrk_5d04d041a2f543abbf8c5e6d9638beda
+modified: 1657636302828
+created: 1657631596962
+fileName: customers.yaml
+contents: |-
+  swagger: "2.0"
+  info:
+    description: "Manage your customers with this api."
+    version: "1.0.0"
+    title: "Swagger Customer"
+    contact:
+      email: "apiteam@izicommerce.io"
+  host: "localhost:8080"
+  basePath: "/api/v1"
+  tags:
+  - name: "customers"
+    description: "Everything about your Customers"
+  schemes:
+  - "http"
+  - "https"
+  paths:
+    /customers:
+      get:
+        tags:
+        - "customers"
+        summary: "Find all customers"
+        description: ""
+        operationId: "findAll"
+        produces:
+        - "application/json"
+        parameters:
+        - name: "page"
+          in: "header"
+          description: "Page number"
+          required: false
+          default: 0
+          type: integer
+          format: int32
+        - name: "size"
+          in: "header"
+          description: "Number of items per page"
+          required: false
+          default: 10
+          type: integer
+          format: int32
+        responses:
+          "200":
+            description: "successful operation"
+            schema:
+              type: "array"
+              items:
+                $ref: "#/definitions/Customer"
+
+  definitions:
+    Customer:
+      type: "object"
+      properties:
+        id:
+          type: "string"
+        name:
+          type: "string"
+          description: "Customer name"
+contentType: yaml
